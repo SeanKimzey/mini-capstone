@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/all-products' => 'products#every_product'
+  get '/product_1' => 'products#product_one'
+  
 end
