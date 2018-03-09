@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get '/all-products' => 'products#every_product'
-  get '/product_1' => 'products#product_one'
-  
+  namespace :v1 do
+    get '/all-products' => 'products#index'
+    get '/all-products/:id' => 'products#show'
+    post '/all-products' => 'products#create'
+ 
+  end
 end
+
+
