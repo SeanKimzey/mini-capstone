@@ -21,6 +21,12 @@ class V1::ProductsController < ApplicationController
     render json: product1.as_json
    
   end
+
+  def update
+    the_id = params[:id]
+    product = Product.find_by(id: the_id)
+    product.update()
+  end
   # def product_one
   #   product = Product.first
   #   render json: product.as_json
