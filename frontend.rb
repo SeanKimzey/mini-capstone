@@ -4,11 +4,7 @@ require 'unirest'
 
 # puts JSON.pretty_generate(response.body)
 
-response = Unirest.get('http://localhost:3000/v1/all-products/3', parameters: {
-  input_name: "test", 
-  input_price: 57686,
-  input_description: "cool test!"
-  })
+response = Unirest.post('http://localhost:3000/v1/all-products/')
 
-p response.body
+puts JSON.pretty_generate(response.body)
 
