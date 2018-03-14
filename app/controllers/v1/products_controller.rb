@@ -12,9 +12,16 @@ class V1::ProductsController < ApplicationController
   end
 
   def create
-    product2 = Product.new(name: "FINALTEST", price: 40, image_url: "hi", description: "cool stuff here")
-    product2.save
-    render json: product2.as_json
+    product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      image_url: params[:image_url],
+      description: params[:description])
+    if product.save
+      render json: product.as_json
+    else
+      render json: {errors: product.erorrs.full_messages}, status: :unprocessible_entity
+    end
   end
 
   def update
