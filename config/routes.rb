@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :v1 do
     get '/products' => 'products#index'
-    get '/products/:id' => 'products#show'
+    get '/products/:THE_ID' => 'products#show'
     post '/products' => 'products#create'
     patch '/products/:id' => 'products#update'
     delete '/products/:id' => 'products#destroy'
