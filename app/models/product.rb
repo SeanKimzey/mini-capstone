@@ -7,19 +7,22 @@ class Product < ApplicationRecord
   validates :description, length: { in: 10..500 }
   validates :image_url, presence: false
 
+  has_many :images
+  has_many :orders
+  belongs_to :supplier
+
 
   def as_json
     {
       id: id,
       name: name,
-      image_url: image_url,
       price: price,
       description: description,
       is_discounted: is_discounted?,
       tax: tax,
       total: total,
       in_stock: in_stock,
-      supplier: supplier,
+      supplier: supplier.as_json,
       images: images.as_json
     }
   end

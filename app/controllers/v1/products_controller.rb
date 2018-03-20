@@ -1,19 +1,24 @@
 class V1::ProductsController < ApplicationController
-
-# Inside your mini-capstone, add the following features:
-# • Change the index action to always return products sorted by id.
-# • Change the index action to allow for searching by name.
-# • Add an option to the frontend to search by a product’s name.
-# • Bonus: Change the index action to allow for sorting by price. Add a frontend option to see the results.
   
   def index 
-    search_by = params[:name]
-    products = Product.all.order(:id => :desc).where("name LIKE ?","%%")
+
+    p "*" * 50
+    p current_user
+    p "*" * 50
+    search_term = params[:search]
+    sort_by_price = params[:sort_price]
+
+    if sort_by_price == 'true'
+      products = Product.order(:price).where("name LIKE ?", "%#{search_term}%")
+    else
+      products = Product.order(:id).where("name LIKE ?",
+        "%#{search_term}%")
+    end
     render json: products.as_json
   end
 
   def show
-    the_id = params[:THE_ID]
+    the_id = params[:the_id]
     product = Product.find_by(id: the_id)
     render json: product.as_json 
   end
@@ -24,7 +29,8 @@ class V1::ProductsController < ApplicationController
       price: params[:price],
       image_url: params[:image_url],
       description: params[:description],
-      in_stock: params[:in_stock]
+      in_stock: params[:in_stock],
+      supplier_id: params[:supplier_id]
       )
     if product.save
       render json: product.as_json
