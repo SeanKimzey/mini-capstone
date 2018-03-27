@@ -38,8 +38,15 @@ jwt = response.body["jwt"]
 
 Unirest.default_header("Authorization", "Bearer #{jwt}")
 
-response = Unirest.post("localhost:3000/v1/orders")
-puts JSON.pretty_generate(response.body)
+
+# create order with carted products ##
+
+# response = Unirest.post("localhost:3000/v1/orders")
+
+# puts JSON.pretty_generate(response.body)
+
+
+## Add items to cart ##
 
 
 # response = Unirest.post("localhost:3000/v1/carted_products", parameters:
@@ -53,9 +60,19 @@ puts JSON.pretty_generate(response.body)
 
 # show carted products index ##
 
-# response = Unirest.get("localhost:3000/v1/carted_products")
 
-# puts JSON.pretty_generate(response.body)
+response = Unirest.get("localhost:3000/v1/carted_products")
+
+puts JSON.pretty_generate(response.body)
+
+# puts "Which item would you like to delete?"
+
+# response = Unirest.delete("localhost:3000/v1/carted_products", parameters:{
+# id: gets.chomp
+# }
+#   )
+
+# p response.body
 
 
 
