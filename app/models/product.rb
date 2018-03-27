@@ -1,15 +1,15 @@
 class Product < ApplicationRecord
+  has_many :images
+  has_many :orders
+  belongs_to :supplier
+  has_many :category_products
+  has_many :categories, through: :category_products
+
   validates :name, presence: true
-  validates :name, length: { in: 1..30 }
   validates :price, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :description, presence: true
   validates :description, length: { in: 10..500 }
-  validates :image_url, presence: false
-
-  has_many :images
-  has_many :orders
-  belongs_to :supplier
 
 
   def as_json
@@ -23,12 +23,14 @@ class Product < ApplicationRecord
       total: total,
       in_stock: in_stock,
       supplier: supplier.as_json,
-      images: images.as_json
+      images: images.as_json,
+      categories: categories.as_json
+
     }
   end
 
   def is_discounted?
-    price < 20
+    price < 400
   end
 
   def tax

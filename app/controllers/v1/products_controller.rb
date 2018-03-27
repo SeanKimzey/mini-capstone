@@ -1,7 +1,7 @@
 class V1::ProductsController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
   
   def index 
-
     p "*" * 50
     p current_user
     p "*" * 50
@@ -12,7 +12,7 @@ class V1::ProductsController < ApplicationController
       products = Product.order(:price).where("name LIKE ?", "%#{search_term}%")
     else
       products = Product.order(:id).where("name LIKE ?",
-        "%#{search_term}%")
+        "%#{}%")
     end
     render json: products.as_json
   end
@@ -24,10 +24,11 @@ class V1::ProductsController < ApplicationController
   end
 
   def create
+     
     product = Product.new(
       name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
+      # image_url: params[:image_url],
       description: params[:description],
       in_stock: params[:in_stock],
       supplier_id: params[:supplier_id]
@@ -37,11 +38,11 @@ class V1::ProductsController < ApplicationController
     else
       render json: {errors: product.errors.full_messages}, status: :unprocessible_entity
     end
+
   end
 
   def update
     product = Product.find(params[:id])
-
     product.name = params[:name] 
     product.description = params[:description]
     product.in_stock = params[:in_stock] 
@@ -53,6 +54,7 @@ class V1::ProductsController < ApplicationController
     else
       render json: {errors: product.errors.full_messages}
     end
+  
   end
 
   def destroy
@@ -61,7 +63,6 @@ class V1::ProductsController < ApplicationController
     product1.destroy
     render json: {message: "You deleted this product"}
   end
-
 
 end
 
