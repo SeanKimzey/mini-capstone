@@ -1,0 +1,24 @@
+body{
+  background-color: gray;
+  font-family: "Courier New",Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace;
+  background-image: url("darkness.png");
+}
+
+h1{
+  color: white;
+}
+
+p{
+  color: #62f442;
+
+}
+
+#accordion div{
+
+background: linear-gradient(#222222, #737974);
+}
+
+#search{
+
+  text-align: center;
+}
