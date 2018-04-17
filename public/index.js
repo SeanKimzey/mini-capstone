@@ -1,4 +1,12 @@
 
+var LogoutPage = {
+  template: "<h1>Logout</h1>",
+  created: function() {
+    axios.defaults.headers.common["Authorization"] = undefined;
+    localStorage.removeItem("jwt");
+    router.push("/");
+  }
+};
 
 var LoginPage = {
   template: "#login-page",
@@ -86,12 +94,12 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      recipes: []
+      products: []
     };
   },
   created: function() {
     axios.get("/v1/products").then(function(response) {
-      this.recipes = response.data;
+      this.products = response.data;
     }.bind(this));
   },
   methods: {},
@@ -103,7 +111,8 @@ var router = new VueRouter({
     { path: "/", component: HomePage },
     { path: "/practice", component: PracticePage },
     { path: "/signup", component: SignupPage },
-    { path: "/login", component: LoginPage }
+    { path: "/login", component: LoginPage },
+    { path: "/logout", component: LogoutPage }
 
   ],
   scrollBehavior: function(to, from, savedPosition) {

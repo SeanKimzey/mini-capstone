@@ -41,7 +41,7 @@
                   <a class="dropdown-item" href="/#/signup">Sign Up</a>
                   <a class="dropdown-item" href="/#/login">Log In</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="/#/logout">Log Out</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -73,7 +73,17 @@
 
 <template id="home-page">
   <div class="row">
-    This is the homepage
+    <div class="col-sm-4" v-for="product in products">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-name">{{ product.name }}</h2>
+          <h4>Price: $<span class="description">{{ product.price }}</span></h4>
+          <img class="image-url" v-bind:src="product.image.url" width="200px">
+          <p class="card-text description"> {{ product.description }}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -143,5 +153,12 @@
   </div>
 </template>
 
-<!--  -->
+<!-- Log out -->
+
+  <div id="vue-app">
+    <a href="/#/signup">Signup</a>
+    <a href="/#/login">Login</a>
+    <a href="/#/logout">Logout</a>
+    <router-view></router-view>
+  </div>
 
