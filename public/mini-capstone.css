@@ -1,7 +1,7 @@
 body{
   background-color: gray;
   font-family: "Courier New",Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace;
-  background-image: url("darkness.png");
+ /* background-image: url("darkness.png");*/
 }
 
 h1{
@@ -9,8 +9,7 @@ h1{
 }
 
 p{
-  color: #62f442;
-
+  color: white;
 }
 
 #accordion div{

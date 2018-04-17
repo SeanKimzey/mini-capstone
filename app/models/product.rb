@@ -46,7 +46,7 @@ class Product < ApplicationRecord
   end
 
   def images
-    Image.where(id: supplier_id)
+    Image.where(product_id: id)
   end
 
 end

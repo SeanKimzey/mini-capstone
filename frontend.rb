@@ -5,8 +5,8 @@ require 'unirest'
 
 # response = Unirest.post("localhost:3000/v1/users", parameters:
 #     {
-#       name: "Pepper",
-#       email: "Carrick",
+#       name: "Ben ",
+#       email: "Debo",
 #       password: "password",
 #       password_confirmation: "password"
    
@@ -17,12 +17,12 @@ require 'unirest'
 
 
 
-## login ##
+# login ##
 
 response = Unirest.post("localhost:3000/user_token", parameters:
   {
     auth: {
-      email: "joe.shmoe@joe.gov",
+      email: "ben@ben.com",
       password: "password"
     }
   }
@@ -51,7 +51,7 @@ Unirest.default_header("Authorization", "Bearer #{jwt}")
 
 # response = Unirest.post("localhost:3000/v1/carted_products", parameters:
 #   {
-#     product_id: 1,
+#     product_id: 3,
 #     quantity: 1
 #   }
 #   )
@@ -61,9 +61,11 @@ Unirest.default_header("Authorization", "Bearer #{jwt}")
 # show carted products index ##
 
 
-response = Unirest.get("localhost:3000/v1/carted_products")
+# response = Unirest.get("localhost:3000/v1/carted_products")
 
-puts JSON.pretty_generate(response.body)
+# puts JSON.pretty_generate(response.body)
+
+
 
 # puts "Which item would you like to delete?"
 
@@ -73,6 +75,11 @@ puts JSON.pretty_generate(response.body)
 #   )
 
 # p response.body
+
+
+# response = Unirest.get("localhost:3000/v1/carted_products")
+
+# puts JSON.pretty_generate(response.body)
 
 
 
@@ -88,13 +95,7 @@ puts JSON.pretty_generate(response.body)
 
 ## create new product for user that is logged in ##
 
-# response = Unirest.post("localhost:3000/v1/products", parameters:
-#   {
-#     name: 20,
-#     price: 50
-#   }
-
-# )
+# response = Unirest.post("localhost:3000/v1/products")
 
 # p response.body
 
@@ -118,24 +119,6 @@ puts JSON.pretty_generate(response.body)
 
 
 
-
-
-# login
-
-# response = Unirest.post("localhost:3000/user_token", parameters:
-#   {
-#     auth: {
-#       email: "sean.kimzey@gmail.com",
-#       password: "password"
-#     }
-#   }
-# )
-
-# p response.body
-
-# jwt = response.body["jwt"]
-
-# Unirest.default_header("Authorization", "Bearer #{jwt}")
 
 
 

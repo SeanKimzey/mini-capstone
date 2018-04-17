@@ -3,6 +3,7 @@ class V1::ProductsController < ApplicationController
   
   def index 
     p "*" * 50
+    p "I am the current user"
     p current_user
     p "*" * 50
     search_term = params[:search]

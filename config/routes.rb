@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/carted_products' => 'carted_products#index'
     delete '/carted_products' => 'carted_products#destroy'
  
-  end
+  end 
 end
 
 
