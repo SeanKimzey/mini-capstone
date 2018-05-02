@@ -1,3 +1,35 @@
+var ProductsNewPage = {
+  template: "#products-new-page",
+  data: function() {
+    return {
+      name: "",
+      price: "",
+      description: "",
+      supplier_id: "",
+      errors: []
+    };
+  },
+  methods: {
+    submit: function() {
+      var params = {
+        name: this.name,
+        price: this.price,
+        description: this.description,
+        supplier_id: this.supplier_id
+      };
+      axios
+        .post("/v1/products", params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  }
+};
 
 var LogoutPage = {
   template: "<h1>Logout</h1>",
@@ -84,10 +116,8 @@ var PracticePage = {
   },
   created: function() {},
   methods: {},
-  computed: {}
+  computed: {}                  
 };
-
-
 
 var HomePage = {
   template: "#home-page",
@@ -106,12 +136,30 @@ var HomePage = {
   computed: {}
 };
 
+var ProductsShowPage = {
+  template: "#product-show-page",
+  data: function() {
+    return {
+      message: "Here is a page just for this product",
+      product: {}
+    };
+  },
+  created: function() {
+    axios.get("/v1/products/" + this.$route.params.id).then(function(response) {
+      this.product = response.data;
+    }.bind(this));
+  },
+  methods: {},
+  computed: {}
+};
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/practice", component: PracticePage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
+    { path: "/products/new", component: ProductsNewPage },
+    { path: "/products/:id", component: ProductsShowPage },
     { path: "/logout", component: LogoutPage }
 
   ],

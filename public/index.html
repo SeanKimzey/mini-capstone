@@ -1,4 +1,4 @@
-<!doctype html>
+'<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -42,6 +42,7 @@
                   <a class="dropdown-item" href="/#/login">Log In</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/#/logout">Log Out</a>
+                  <a class="dropdown-item" href="/#/products/new">Add a Product</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -80,11 +81,24 @@
           <h4>Price: $<span class="description">{{ product.price }}</span></h4>
           <img class="image-url" v-bind:src="product.image.url" width="200px">
           <p class="card-text description"> {{ product.description }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a v-bind:href="'/#/products/' + product.id" class="btn btn-primary">Go to product</a>
         </div>
       </div>
     </div>
   </div>
+</template>
+
+
+
+<template id="product-show-page">
+  <div class="row">
+    <div>
+    <p> {{ message }}</p>
+    <p>name: {{ product.name }}</p>
+    <p>price: {{ product.price }}</p>
+    <p>description: {{ product.description }}</p>
+    </div>
+  </div> 
 </template>
 
 
@@ -94,8 +108,6 @@
   </div>
 </template>
 
-
-<!-- sign up -->
 
 <template id="signup-page">
   <div class="vue-component">
@@ -127,9 +139,6 @@
   </div>
 </template>
 
-<!--  -->
-
-<!-- Log in -->
 
 <template id="login-page">
   <div class="vue-component">
@@ -153,12 +162,37 @@
   </div>
 </template>
 
-<!-- Log out -->
 
-  <div id="vue-app">
-    <a href="/#/signup">Signup</a>
-    <a href="/#/login">Login</a>
-    <a href="/#/logout">Logout</a>
-    <router-view></router-view>
+<template id="products-new-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>Add a new product</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" v-model="name">
+      </div>
+      <div class="form-group">
+        <label>Price:</label>
+        <input type="text" class="form-control" v-model="price">
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" class="form-control" v-model="description">
+      </div>
+       <div class="form-group">
+        <label>Supplier ID:</label>
+        <input type="text" class="form-control" v-model="supplier_id">
+      </div>
+    </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
   </div>
+</div>
+</template>
+
+
 
